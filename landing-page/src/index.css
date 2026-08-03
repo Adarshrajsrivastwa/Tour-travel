@@ -1,0 +1,328 @@
+@import "tailwindcss";
+
+:root {
+  --primary: #2563eb; /* blue-600 */
+  --secondary: #1e40af; /* blue-800 */
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-10px) scale(1.02);
+  }
+}
+
+@keyframes shimmer-bg {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes drive-across {
+  0% {
+    transform: translate3d(-18vw, 0, 0);
+  }
+  100% {
+    transform: translate3d(118vw, 0, 0);
+  }
+}
+
+@keyframes bus-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes bus-glow-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes lane-flow {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: -240px;
+  }
+}
+
+@keyframes cloud-drift {
+  0% {
+    transform: translate3d(-8vw, 0, 0);
+    opacity: 0.25;
+  }
+  20% {
+    opacity: 0.55;
+  }
+  80% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate3d(85vw, 0, 0);
+    opacity: 0.22;
+  }
+}
+
+@keyframes sparkle-soft {
+  0%,
+  100% {
+    transform: rotate(-6deg) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: rotate(6deg) scale(1.12);
+    opacity: 0.88;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.9s ease-out forwards;
+}
+
+.animate-float-soft {
+  animation: float-soft 7s ease-in-out infinite;
+}
+
+.hero-gradient-shift {
+  background-size: 200% 200%;
+  animation: shimmer-bg 14s ease infinite alternate;
+}
+
+.hero-gradient-overlay {
+  background-image: linear-gradient(
+    125deg,
+    rgba(30, 58, 138, 0.78) 0%,
+    rgba(37, 99, 235, 0.72) 42%,
+    rgba(49, 46, 129, 0.8) 100%
+  );
+  background-size: 200% 200%;
+  animation: shimmer-bg 14s ease infinite alternate;
+}
+
+.travel-bus {
+  position: absolute;
+  left: 0;
+  bottom: 1.15rem;
+  z-index: 5;
+  will-change: transform;
+  animation: drive-across 18s cubic-bezier(0.37, 0, 0.25, 1) infinite;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.45));
+}
+
+.travel-bus-bob {
+  animation: bus-bob 0.62s ease-in-out infinite;
+  transform-origin: 50% 100%;
+}
+
+.travel-bus-glow {
+  position: absolute;
+  left: 50%;
+  top: 55%;
+  width: 3.25rem;
+  height: 3.25rem;
+  translate: -50% -50%;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(251, 191, 36, 0.5) 0%, rgba(251, 191, 36, 0) 72%);
+  filter: blur(6px);
+  pointer-events: none;
+  animation: bus-glow-pulse 2.4s ease-in-out infinite;
+}
+
+.travel-lane-markings {
+  z-index: 1;
+  background-image: repeating-linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0 28px,
+    rgba(255, 255, 255, 0.92) 28px 52px,
+    rgba(255, 255, 255, 0) 52px 80px
+  );
+  background-size: 240px 100%;
+  opacity: 0.88;
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  animation: lane-flow 2.1s linear infinite;
+}
+
+.travel-cloud {
+  position: absolute;
+  bottom: 0;
+  height: 1.35rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.42);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.06) inset,
+    0 0 28px rgba(255, 255, 255, 0.15);
+  filter: blur(10px);
+  animation: cloud-drift 28s ease-in-out infinite;
+}
+
+.travel-cloud::before,
+.travel-cloud::after {
+  content: "";
+  position: absolute;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.38);
+  filter: blur(8px);
+}
+
+.travel-cloud::before {
+  width: 2.25rem;
+  height: 1.1rem;
+  left: 0.6rem;
+  top: -0.35rem;
+}
+
+.travel-cloud::after {
+  width: 1.85rem;
+  height: 0.95rem;
+  right: 0.45rem;
+  top: -0.2rem;
+}
+
+.travel-cloud-a {
+  left: 4%;
+  width: 4.5rem;
+  animation-duration: 32s;
+  animation-delay: -6s;
+}
+
+.travel-cloud-b {
+  left: 38%;
+  width: 5.75rem;
+  height: 1.5rem;
+  opacity: 0.9;
+  animation-duration: 38s;
+  animation-delay: -14s;
+}
+
+.travel-cloud-c {
+  left: 68%;
+  width: 3.75rem;
+  animation-duration: 26s;
+  animation-delay: -3s;
+}
+
+.animate-sparkle-soft {
+  animation: sparkle-soft 3.2s ease-in-out infinite;
+  transform-origin: 50% 50%;
+}
+
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(1.5rem);
+  transition:
+    opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.delay-100 {
+  transition-delay: 100ms;
+}
+.delay-200 {
+  transition-delay: 200ms;
+}
+.delay-300 {
+  transition-delay: 300ms;
+}
+.delay-400 {
+  transition-delay: 400ms;
+}
+
+.animate-delay-100 {
+  animation-delay: 100ms;
+}
+.animate-delay-200 {
+  animation-delay: 200ms;
+}
+.animate-delay-300 {
+  animation-delay: 300ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up,
+  .animate-fade-in,
+  .animate-float-soft,
+  .hero-gradient-shift,
+  .hero-gradient-overlay,
+  .travel-bus,
+  .travel-bus-bob,
+  .travel-bus-glow,
+  .travel-lane-markings,
+  .travel-cloud,
+  .animate-sparkle-soft {
+    animation: none;
+  }
+
+  .travel-bus {
+    filter: none;
+  }
+
+  .travel-bus-glow {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+
+  .travel-cloud {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.4;
+  }
+
+  .travel-gallery-img {
+    transform: none !important;
+  }
+  .reveal-on-scroll {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+body {
+  @apply bg-gray-50 text-gray-900;
+}
